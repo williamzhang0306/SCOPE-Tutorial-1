@@ -7,4 +7,5 @@ services:
       dockerfile: Dockerfile
     image: cross-compile-beaglebone
     volumes:
-      - .:/inner  # Mount the source code directory
+      - .:/LED_Example  # Mount the source code directory
+    tty: true
