@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  cross-compile-beaglebone:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cross-compile-beaglebone
+    volumes:
+      - .:/inner  # Mount the source code directory
