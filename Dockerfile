@@ -1,13 +1,16 @@
-# Arm and Debian Image
-FROM arm32v7/debian:10.3
+# Use Debian as the base image
+FROM debian:10.3 AS builder
 
-# Cross-compiling pacakges for arm
+# Install required packages for building
 RUN apt-get update && \
     apt-get install -y \
     build-essential \
     cmake \
+    qemu-user-static \
     g++-arm-linux-gnueabihf \
+    g++\
     && rm -rf /var/lib/apt/lists/*
+
 
 # Set the entry point to an interactive shell
 CMD ["/bin/bash"]
