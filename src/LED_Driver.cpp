@@ -10,6 +10,11 @@ LED_Driver::~LED_Driver() {
     // Add destructor implementation if needed
 }
 
+void LED_Driver::initialize_LED(){
+    setSysfsGPIOValue("/sys/class/gpio/gpio30/direction", "out");
+    std::cout << "LED Initialized" << std::endl;
+}
+
 void LED_Driver::turn_LED_on() {
     setSysfsGPIOValue("/sys/class/gpio/gpio30/value", "1");
     std::cout << "LED Turned ON" << std::endl;

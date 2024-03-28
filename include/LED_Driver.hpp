@@ -9,6 +9,7 @@ public:
     LED_Driver();
     ~LED_Driver();
 
+    void initialize_LED();
     void turn_LED_on();
     void turn_LED_off();
 

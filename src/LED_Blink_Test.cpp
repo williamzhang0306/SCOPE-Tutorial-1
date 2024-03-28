@@ -7,6 +7,7 @@ int main(){
     LED_Driver ledDriver;
 
     //blink test
+    ledDriver.initialize_LED();
     for (int i = 1; i <=10; i++){
         ledDriver.turn_LED_on();
         sleep(1);
