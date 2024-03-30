@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  SCOPE-DEV:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: scope-dev
+    container_name: scope-dev-container
+    volumes:
+      - .:/root/fprime_projects  # Mount all code in this directory to /root/fprime_projects in the container
+    tty: true
