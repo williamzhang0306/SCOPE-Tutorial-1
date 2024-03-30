@@ -1,5 +1,5 @@
 # Arm and Debian Image
-FROM arm32v7/debian:10.3
+FROM debian:10.3
 
 # Cross-compiling pacakges for arm
 RUN apt-get update && \
