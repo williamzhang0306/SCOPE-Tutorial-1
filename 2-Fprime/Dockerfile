@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     cmake \
     gdb-multiarch \
     default-jre \
+    vim \
     python3 \
     python3-setuptools \
     python3-pip \
