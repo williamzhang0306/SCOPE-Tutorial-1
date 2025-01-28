@@ -28,19 +28,15 @@ ssh debian@192.168.6.2
 ssh debian@192.168.7.2
 ```
 
-You should be prompted to enter the password. This should allow you current terminal to access the beaglebone. To close the connection:
+You should be prompted to enter the password. This should allow you current terminal to access the beaglebone. 
 
-``` BeagleBone
-exit
-```
-
-The syntax for scp is as follows:
+To copy files from the host computer to the beagle bone user the `scp` command:
 
 ```
 scp <local file address to copy> <username>@<remote ip>:<destiation>
 ```
 
-Example
+Example:
 
 ``` MacOS/Linux
 scp test.txt debian@192.168.6.2:~/test_copy.txt
@@ -48,11 +44,39 @@ scp test.txt debian@192.168.6.2:~/test_copy.txt
 
 This copies the local file `test.txt` to the file `~/test_copy.txt` in the beaglebone.
 
+Finally, to close the connection:
 
-## (Optional) LED Circuit
-TODO - message me on slack if I forgt 
+``` BeagleBone
+exit
+```
+## LED Circuit
+The main feature of the beaglebone black is its extensive pin I/O, found in the P8 and P9 headers. This section will demonstrate a simple way to control GPIO (general purpose IO) pins via the Linux file system.
 
-## Cross Compile
+![Beagle Bone Black Headers](images/BBB_Headers.png)
+
+Connect the p9.41 pin (a.k.a. gpio20 pin) to the resistor. Connect the resistor to the LED's anode (the longer leg). Connect the LED's cathode (shorter end) to the p9.1 (a.k.a the DGND pin).
+
+![LED Circuit Schematic](images/circuit_image.svg)
+
+To set up the gpio20 pin run the following command:
+```
+echo 20 > /sys/class/gpio/export
+```
+
+Then set the gpio20 pin's direction to out.
+```
+echo "out" > /sys/class/gpio/gpio20/direction
+```
+
+Now the voltage of the gpio20 pin can be controlled by writing its value.
+```
+echo 1 > /sys/class/gpio/gpio20/value
+echo 0 > /sys/class/gpio/gpio20/value
+```
+
+![irl_image](images/LED_Circuit_IRL.png)
+
+## Cross Compiling
 
 In the `/src` and `/include` folders you'll find some short c++ code used to blink and LED 10 times on the beaglebone using sysfs.
 
@@ -67,5 +91,3 @@ We can build an image with the following command:
 ```
 docker compose build
 ```
-
-# TODO message me on slack if I forgot
